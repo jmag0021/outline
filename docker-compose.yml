@@ -12,10 +12,12 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: outline
-#   s3:
+  s3:
 #     image: lphoward/fake-s3
-#     ports:
-#       - "4569:4569"
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
 #     volumes:
 #       - ./fakes3:/fakes3_root
   outline:
@@ -33,4 +35,4 @@ services:
     depends_on:
       - postgres
       - redis
-#       - s3
+      - s3
